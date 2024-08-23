@@ -1,11 +1,11 @@
-
+//pages
+import Home from '../pages/Home';
 
 function App() {
   return (
     <>
-      {/* header
-    search (within database, later we will CRUD)
-    display (with child components most likely) */}
+      {/* CRUD stuff later */}
+      <Home />
     </>
   );
 }

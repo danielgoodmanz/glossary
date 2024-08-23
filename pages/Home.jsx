@@ -1,12 +1,13 @@
 import Header from '../src/components/Header';
-
-import React from 'react';
+import Card from '../src/components/Card';
+import Search from '../src/components/Search';
 
 const Home = () => {
   return (
     <div>
-      <h1>building glossary</h1>
       <Header />
+      <Search />
+      <Card />
     </div>
   );
 };
