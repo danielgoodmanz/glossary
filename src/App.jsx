@@ -1,4 +1,4 @@
-import Header from './components/Header';
+
 
 function App() {
   return (
@@ -6,9 +6,6 @@ function App() {
       {/* header
     search (within database, later we will CRUD)
     display (with child components most likely) */}
-
-      <h1>building glossary</h1>
-      <Header />
     </>
   );
 }
