@@ -6,6 +6,7 @@ function App() {
     <>
       {/* CRUD stuff later */}
       <Home />
+      <button>create a term</button>
     </>
   );
 }
