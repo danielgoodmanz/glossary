@@ -1,7 +1,7 @@
 const Search = () => {
   return (
     <div>
-      <form action='/search'>
+      <form action='/' method='post'>
         <input type='text' placeholder='begin your search' />
         <button>go</button>
       </form>
