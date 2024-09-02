@@ -26,10 +26,11 @@ const db = async () => {
 db();
 
 //routes
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  const terms = await Term.find({});
+  res.send(terms[1].title);
   // let's init the DB here so we can set up the retrieval of existing terms, and pull ONE card
   // home route needs an existing array of what terms exist, we will map that to card component
-  res.send('hello world');
 });
 
 app.post('/', async (req, res) => {
