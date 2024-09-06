@@ -1,8 +1,9 @@
-const Card = () => {
+const Card = (props) => {
   return (
     <div>
-      <h2>term</h2>
-      <p>defintion</p>
+      <h2>{props.title}</h2>
+      <p>{props.definition}</p>
+      <p>{props.difficulty}</p>
     </div>
   );
 };
