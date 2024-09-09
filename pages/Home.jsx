@@ -25,7 +25,7 @@ const Home = () => {
     <div>
       <Header />
       <Search />
-      <div className='glossaryterms'>
+      <div className="glossaryterms">
         {term &&
           term.map((term) => {
             return (

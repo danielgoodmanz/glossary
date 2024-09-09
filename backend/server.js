@@ -22,7 +22,7 @@ const dburi = process.env.MONGO_URI;
 //connect db
 const db = async () => {
   try {
-    const response = await mongoose.connect(dburi);
+    await mongoose.connect(dburi);
   } catch (err) {
     console.log(err);
   }
@@ -43,7 +43,7 @@ app.get('/terms', async (req, res) => {
   // home route needs an existing array of what terms exist, we will map that to card component
 });
 
-app.post('/', async (req, res) => {
+app.post('/add', async (req, res) => {
   const { title, definition, difficulty } = req.body;
   const term = await Term.create({ title, definition, difficulty });
   res.status(200).json(term);
