@@ -1,14 +1,13 @@
 //pages
 import Home from '../pages/Home';
 import Add from '../pages/Add';
+import Navbar from './components/navbar';
 
 function App() {
   return (
     <>
-      {/* CRUD stuff later */}
+      <Navbar />
       <Home />
-      <button>create a term</button>
-      <Add />
     </>
   );
 }

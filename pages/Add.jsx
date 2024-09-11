@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from '../src/components/navbar';
 
 const Add = () => {
   const [title, setTitle] = useState('');
@@ -7,22 +8,20 @@ const Add = () => {
 
   function updateTitle(e) {
     setTitle(e.target.value);
-    console.log(title);
   }
   function updateDifficulty(e) {
     setDifficulty(e.target.value);
-    console.log(difficulty);
   }
   function updateDefiniton(e) {
     setDefinition(e.target.value);
-    console.log(definiton);
   }
 
   function handleSubmit() {}
 
   return (
     <div>
-      <form action="/add" onSubmit={handleSubmit}>
+      <Navbar />
+      <form action="/add" method="post" onSubmit={handleSubmit}>
         <section>
           <h1>Add a term!</h1>
           <p>
