@@ -4,7 +4,7 @@ import Navbar from '../src/components/navbar';
 const Add = () => {
   const [title, setTitle] = useState('');
   const [difficulty, setDifficulty] = useState('');
-  const [definiton, setDefinition] = useState('');
+  const [definition, setDefinition] = useState('');
 
   function updateTitle(e) {
     setTitle(e.target.value);
@@ -16,7 +16,25 @@ const Add = () => {
     setDefinition(e.target.value);
   }
 
-  function handleSubmit() {}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // this is the body of the request below sent to the post route
+    const term = { title, definition, difficulty };
+
+    const response = await fetch('http://localhost:3000/add', {
+      method: 'post',
+      body: JSON.stringify(term),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+
+    const json = await response.json();
+    setDefinition('');
+    setTitle('');
+    setDifficulty('');
+    console.log('new term added', json);
+  };
 
   return (
     <div>
@@ -32,6 +50,7 @@ const Add = () => {
               placeholder='term title'
               required
               onChange={updateTitle}
+              value={title}
             />
           </p>
           <p>
@@ -42,6 +61,7 @@ const Add = () => {
               placeholder='rate it '
               required
               onChange={updateDifficulty}
+              value={difficulty}
             />
           </p>
           <p>
@@ -53,6 +73,7 @@ const Add = () => {
               required
               placeholder="what's it mean?"
               onChange={updateDefiniton}
+              value={definition}
             />
           </p>
         </section>

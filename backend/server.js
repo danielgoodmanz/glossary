@@ -44,9 +44,9 @@ app.get('/terms', async (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-  // // const { title, definition, difficulty } = req.body;
-  // const term = await Term.create({ title, definition, difficulty });
-  // res.status(200).json(term);
+  const { title, definition, difficulty } = req.body;
+  const term = await Term.create({ title, definition, difficulty });
+  res.status(200).json(term);
 });
 
 app.put('/edit', (req, res) => {
