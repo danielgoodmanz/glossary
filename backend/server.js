@@ -47,8 +47,6 @@ app.post('/add', async (req, res) => {
   // // const { title, definition, difficulty } = req.body;
   // const term = await Term.create({ title, definition, difficulty });
   // res.status(200).json(term);
-  console.log(req.body);
-  res.send(200);
 });
 
 app.put('/edit', (req, res) => {
