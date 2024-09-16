@@ -25,19 +25,6 @@ const Home = () => {
     <div>
       <Header />
       <Search />
-      <div className="glossaryterms">
-        {term &&
-          term.map((term) => {
-            return (
-              <Card
-                key={term._id}
-                title={term.title}
-                definition={term.definition}
-                difficulty={term.difficulty}
-              />
-            );
-          })}
-      </div>
     </div>
   );
 };

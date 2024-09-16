@@ -39,8 +39,12 @@ app.get('/', (req, res) => {
 app.get('/terms', async (req, res) => {
   const terms = await Term.find({});
   res.send(terms);
-  // let's init the DB here so we can set up the retrieval of existing terms, and pull ONE card
-  // home route needs an existing array of what terms exist, we will map that to card component
+});
+
+app.get('/findone', async (req, res) => {
+  console.log(req.params);
+  const terms = await Terms.find();
+  res.send(terms);
 });
 
 app.post('/add', async (req, res) => {
@@ -49,12 +53,27 @@ app.post('/add', async (req, res) => {
   res.status(200).json(term);
 });
 
-app.put('/edit', (req, res) => {
-  res.send('hello world');
+app.put('/edit/:id', async (req, res) => {
+  //get id of request
+  const { id } = req.params;
+
+  const term = await Term.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
+
+  res.status(200).json(term);
 });
 
-app.delete('/delete', (req, res) => {
-  res.send('hello world');
+app.delete('/delete/:id', async (req, res) => {
+  //get id of request
+  const { id } = req.params;
+
+  const term = await Term.findOneAndDelete({ _id: id });
+
+  res.status(200).json(term);
 });
 
 app.listen(port, () => console.log('we are live'));
