@@ -5,12 +5,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import Add from '../pages/Add.jsx';
 import ErrorPage from '../pages/Error-page.jsx';
+import Navbar from './components/navbar.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/result',
+        element: <Navbar />,
+      },
+    ],
   },
   {
     path: '/add',

@@ -1,5 +1,6 @@
 const Card = ({ term }) => {
   const handleClick = async () => {
+    //soft validation
     const deleteCheck = prompt('password');
     if (deleteCheck === 'delete') {
       const response = await fetch('http://localhost:3000/delete/' + term._id, {
