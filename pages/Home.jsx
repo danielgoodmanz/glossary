@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 const Home = () => {
   // state
   const [terms, setTerms] = useState([]);
+  const [filteredTerms, setFilteredTerms] = useState([]);
+  const [search, setSearch] = useState('');
 
   //useEffect to fetch from db when Home mounts
   useEffect(() => {
@@ -20,22 +22,59 @@ const Home = () => {
     fetchTerms();
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    // test this for tomorrow, works but works oddly
+    setFilteredTerms(
+      terms.filter((term) => {
+        return term.title === search;
+      })
+    );
+  };
+
   return (
     <div>
       <Header />
+      {/* searchbar */}
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="begin your search"
+            value={search}
+            onChange={handleChange}
+          />
+          {/* <button>go</button> */}
+        </form>
+      </div>
       <div className="card-area">
-        {terms &&
-          terms.map((term) => {
-            return (
-              <Card
-                key={term._id}
-                term={term}
-                title={term.title}
-                definiton={term.definiton}
-                difficulty={term.difficulty}
-              />
-            );
-          })}
+        {search
+          ? filteredTerms.map((term) => {
+              return (
+                <Card
+                  key={term._id}
+                  term={term}
+                  title={term.title}
+                  definiton={term.definiton}
+                  difficulty={term.difficulty}
+                />
+              );
+            })
+          : terms &&
+            terms.map((term) => {
+              return (
+                <Card
+                  key={term._id}
+                  term={term}
+                  title={term.title}
+                  definiton={term.definiton}
+                  difficulty={term.difficulty}
+                />
+              );
+            })}
       </div>
     </div>
   );
