@@ -22,17 +22,21 @@ const Home = () => {
     fetchTerms();
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-  const handleChange = (e) => {
-    setSearch(e.target.value);
-    //onChange is one character behind, look into this **
+  //watch changes in search state update
+  useEffect(() => {
     setFilteredTerms(
       terms.filter((term) => {
         return term.title.includes(search.toLowerCase());
       })
     );
+  }, [search]);
+
+  //handlers
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
   };
 
   return (
