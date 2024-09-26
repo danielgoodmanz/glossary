@@ -30,9 +30,10 @@ const Home = () => {
     // test this for tomorrow, works but works oddly
     setFilteredTerms(
       terms.filter((term) => {
-        return term.title === search;
+        return term.title.includes(search.toLowerCase());
       })
     );
+    console.log(filteredTerms);
   };
 
   return (

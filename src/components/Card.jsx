@@ -24,3 +24,18 @@ const Card = ({ term }) => {
 };
 
 export default Card;
+
+{
+  terms &&
+    terms.map((term) => {
+      return (
+        <Card
+          key={term._id}
+          term={term}
+          title={term.title}
+          definiton={term.definiton}
+          difficulty={term.difficulty}
+        />
+      );
+    });
+}
