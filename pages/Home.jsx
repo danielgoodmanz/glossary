@@ -27,13 +27,12 @@ const Home = () => {
   };
   const handleChange = (e) => {
     setSearch(e.target.value);
-    // test this for tomorrow, works but works oddly
+    //onChange is one character behind, look into this **
     setFilteredTerms(
       terms.filter((term) => {
         return term.title.includes(search.toLowerCase());
       })
     );
-    console.log(filteredTerms);
   };
 
   return (
@@ -43,15 +42,15 @@ const Home = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            placeholder="begin your search"
+            type='text'
+            placeholder='begin your search'
             value={search}
             onChange={handleChange}
           />
           {/* <button>go</button> */}
         </form>
       </div>
-      <div className="card-area">
+      <div className='card-area'>
         {search
           ? filteredTerms.map((term) => {
               return (
