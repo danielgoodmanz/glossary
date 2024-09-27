@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
+
 const Card = ({ term }) => {
+  //delete handler
   const handleClick = async () => {
     //soft validation
     const deleteCheck = prompt('password');
@@ -10,7 +13,11 @@ const Card = ({ term }) => {
     }
   };
 
-  const handleEdit = () => {};
+  //edit handler
+  const handleEdit = async () => {
+    //here let's make the form fields editable and lift state then fetch a patch request to API
+  };
+
   return (
     <div>
       <h2>{term.title}</h2>

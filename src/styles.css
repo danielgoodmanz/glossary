@@ -9,4 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  /* remove these before we add tailwind & shadcn ui */
+  background-color: rgb(40, 40, 40);
+  color: white;
 }

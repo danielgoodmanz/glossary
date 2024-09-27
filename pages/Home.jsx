@@ -1,6 +1,8 @@
 import Header from '../src/components/Header';
 import Card from '../src/components/Card';
+import Edit from './Edit';
 import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const Home = () => {
   // state
@@ -80,6 +82,7 @@ const Home = () => {
               );
             })}
       </div>
+      <div className='editarea'></div>
     </div>
   );
 };

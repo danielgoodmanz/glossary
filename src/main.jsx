@@ -2,10 +2,12 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+//pages
 import App from './App.jsx';
 import Add from '../pages/Add.jsx';
+import Edit from '../pages/Edit.jsx';
 import ErrorPage from '../pages/Error-page.jsx';
-import Navbar from './components/navbar.jsx';
 
 const router = createBrowserRouter([
   {
@@ -13,10 +15,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      {
-        path: '/result',
-        element: <Navbar />,
-      },
+      // {
+      //   path: '/edit',
+      //   element: <Edit />,
+      // },
     ],
   },
   {
