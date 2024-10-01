@@ -3,7 +3,7 @@ const Edit = () => {
     <div>
       <form action='/edit/:id' method='post'>
         <section>
-          <h1>editing</h1>
+          <h1></h1>
           <p>
             <label htmlFor='name'></label>
             <input

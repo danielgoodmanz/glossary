@@ -41,36 +41,36 @@ const Add = () => {
   return (
     <div>
       <Navbar />
-      <form action="/add" method="post" onSubmit={handleSubmit}>
+      <form action='/add' method='post' onSubmit={handleSubmit}>
         <section>
           <h1>Add a term!</h1>
           <p>
-            <label htmlFor="name"></label>
+            <label htmlFor='name'></label>
             <input
-              type="text"
-              name="title"
-              placeholder="term title"
+              type='text'
+              name='title'
+              placeholder='term title'
               required
               onChange={updateTitle}
               value={title}
             />
           </p>
           <p>
-            <label htmlFor="difficulty"></label>
+            <label htmlFor='difficulty'></label>
             <input
-              type="text"
-              name="difficulty"
-              placeholder="rate it "
+              type='text'
+              name='difficulty'
+              placeholder='rate it '
               required
               onChange={updateDifficulty}
               value={difficulty}
             />
           </p>
           <p>
-            <label htmlFor="definition"></label>
+            <label htmlFor='definition'></label>
             <textarea
-              name="definiton"
-              id="definition"
+              name='definiton'
+              id='definition'
               rows={3}
               required
               placeholder="what's it mean?"
@@ -80,7 +80,7 @@ const Add = () => {
           </p>
         </section>
         <section>
-          <button type="submit">Finish</button>
+          <button type='submit'>Finish</button>
         </section>
       </form>
     </div>

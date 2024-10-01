@@ -14,8 +14,9 @@ const Card = ({ term }) => {
   };
 
   //edit handler
-  const handleEdit = async () => {
+  const handleEdit = (_id) => {
     //here let's make the form fields editable and lift state then fetch a patch request to API
+    console.log(term._id);
   };
 
   return (
@@ -23,9 +24,11 @@ const Card = ({ term }) => {
       <h2>{term.title}</h2>
       <p>{term.definition}</p>
       <p>{term.difficulty}</p>
-      <span onClick={handleClick}>delete</span>
+      <button onClick={handleClick}>delete</button>
       <span> // </span>
-      <span onClick={handleEdit}>edit</span>
+      <Link to='/edit'>
+        <button onClick={handleEdit}>edit</button>
+      </Link>
     </div>
   );
 };

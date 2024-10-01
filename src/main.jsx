@@ -1,7 +1,11 @@
 //imports
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  redirect,
+  RouterProvider,
+} from 'react-router-dom';
 
 //pages
 import App from './App.jsx';
@@ -19,12 +23,10 @@ const router = createBrowserRouter([
       //   path: '/edit',
       //   element: <Edit />,
       // },
+      { path: '/add', element: <Add /> },
     ],
   },
-  {
-    path: '/add',
-    element: <Add />,
-  },
+  {},
 ]);
 
 createRoot(document.getElementById('root')).render(

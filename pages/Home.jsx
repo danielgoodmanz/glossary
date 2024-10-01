@@ -83,6 +83,7 @@ const Home = () => {
             })}
       </div>
       <div className='editarea'></div>
+      <Outlet />
     </div>
   );
 };
