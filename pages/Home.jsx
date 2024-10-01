@@ -1,14 +1,16 @@
 import Header from '../src/components/Header';
 import Card from '../src/components/Card';
-import Edit from './Edit';
+import Add from './Add';
+
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 
 const Home = () => {
   // state
   const [terms, setTerms] = useState([]);
   const [filteredTerms, setFilteredTerms] = useState([]);
   const [search, setSearch] = useState('');
+  // used to track which card was clicked for editing
+  const [currentId, setCurrentId] = useState(null);
 
   //useEffect to fetch from db when Home mounts
   useEffect(() => {
@@ -48,15 +50,15 @@ const Home = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <input
-            type='text'
-            placeholder='begin your search'
+            type="text"
+            placeholder="begin your search"
             value={search}
             onChange={handleChange}
           />
           {/* <button>go</button> */}
         </form>
       </div>
-      <div className='card-area'>
+      <div className="card-area">
         {search
           ? filteredTerms.map((term) => {
               return (
@@ -66,6 +68,8 @@ const Home = () => {
                   title={term.title}
                   definiton={term.definiton}
                   difficulty={term.difficulty}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
                 />
               );
             })
@@ -78,12 +82,25 @@ const Home = () => {
                   title={term.title}
                   definiton={term.definiton}
                   difficulty={term.difficulty}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
                 />
               );
             })}
       </div>
-      <div className='editarea'></div>
-      <Outlet />
+      <hr />
+      <hr />
+      <div className="editarea"></div>
+      {/* {currentId ? (
+        <Card term={terms.find((t) => t._id === currentId)} />
+      ) : null} */}
+      {currentId ? (
+        <Add
+          term={terms.find((t) => t._id === currentId)}
+          currentId={currentId}
+          setCurrentId={setCurrentId}
+        />
+      ) : null}
     </div>
   );
 };

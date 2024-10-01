@@ -1,8 +1,6 @@
-import { Link } from 'react-router-dom';
-
-const Card = ({ term }) => {
+const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   //delete handler
-  const handleClick = async () => {
+  const handleDelete = async () => {
     //soft validation
     const deleteCheck = prompt('password');
     if (deleteCheck === 'delete') {
@@ -15,8 +13,8 @@ const Card = ({ term }) => {
 
   //edit handler
   const handleEdit = (_id) => {
-    //here let's make the form fields editable and lift state then fetch a patch request to API
-    console.log(term._id);
+    setCurrentId(term._id);
+    // future implementation could make the input fields editable
   };
 
   return (
@@ -24,11 +22,9 @@ const Card = ({ term }) => {
       <h2>{term.title}</h2>
       <p>{term.definition}</p>
       <p>{term.difficulty}</p>
-      <button onClick={handleClick}>delete</button>
+      <button onClick={handleDelete}>delete</button>
       <span> // </span>
-      <Link to='/edit'>
-        <button onClick={handleEdit}>edit</button>
-      </Link>
+      <button onClick={handleEdit}>edit</button>
     </div>
   );
 };
