@@ -3,6 +3,7 @@ import Card from '../src/components/Card';
 import Add from './Add';
 
 import { useState, useEffect } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
 
 const Home = () => {
   // state
@@ -11,6 +12,8 @@ const Home = () => {
   const [search, setSearch] = useState('');
   // used to track which card was clicked for editing
   const [currentId, setCurrentId] = useState(null);
+
+  const params = useParams();
 
   //useEffect to fetch from db when Home mounts
   useEffect(() => {
@@ -91,16 +94,16 @@ const Home = () => {
       <hr />
       <hr />
       <div className="editarea"></div>
-      {/* {currentId ? (
-        <Card term={terms.find((t) => t._id === currentId)} />
-      ) : null} */}
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}
           currentId={currentId}
           setCurrentId={setCurrentId}
+          setTerms={setTerms}
+          terms={terms}
         />
       ) : null}
+      <Outlet />
     </div>
   );
 };

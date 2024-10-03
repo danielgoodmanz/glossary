@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Add = ({ term, currentId, setCurrentId }) => {
+const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
   const [title, setTitle] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [definition, setDefinition] = useState('');
@@ -26,7 +26,7 @@ const Add = ({ term, currentId, setCurrentId }) => {
 
       //you have to set your method, body & headers for a fetch API post request
       const response = await fetch('http://localhost:3000/add', {
-        method: 'post',
+        method: 'POST',
         //you must make the term (JS object) a JSON string
         body: JSON.stringify(term),
         headers: {
@@ -42,6 +42,23 @@ const Add = ({ term, currentId, setCurrentId }) => {
     } else {
       // OUR PUT REQUEST
       e.preventDefault();
+
+      const updatedTerm = { title, definition, difficulty };
+
+      const response = await fetch('http://localhost:3000/edit/' + currentId, {
+        method: 'PUT',
+        body: JSON.stringify(updatedTerm),
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+
+      const json = await response.json();
+
+      setTerms((previousTerms) => {
+        [...previousTerms, updatedTerm];
+      });
+      setCurrentId('');
     }
   };
 

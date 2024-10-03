@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   //delete handler
   const handleDelete = async () => {
