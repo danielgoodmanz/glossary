@@ -56,9 +56,11 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
 
       const json = await response.json();
 
-      // setTerms((previousTerms) => {
-      //   return [...previousTerms, updatedTerm];
-      // });
+      setTerms((previousTerms) => {
+        return previousTerms.map((term) =>
+          term.id === currentId ? updatedTerm : term
+        );
+      });
 
       setCurrentId('');
     }

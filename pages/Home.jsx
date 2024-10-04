@@ -27,7 +27,7 @@ const Home = () => {
       }
     };
     fetchTerms();
-  }, [currentId]);
+  }, []);
 
   //watch changes in search state update
   useEffect(() => {
