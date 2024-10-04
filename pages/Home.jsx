@@ -23,11 +23,12 @@ const Home = () => {
       //establish starting state
       if (response.ok) {
         setTerms(json);
-        console.log(terms);
+        //state hasn't rendered yet here so you'd be logging stale state if log(terms)
+        console.log(json);
       }
     };
     fetchTerms();
-  }, []);
+  }, [currentId]);
 
   //watch changes in search state update
   useEffect(() => {

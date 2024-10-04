@@ -10,9 +10,10 @@ const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
         method: 'DELETE',
       });
       const json = await response.json();
-      setTerms((previousTerms) => {
-        return [...previousTerms, terms];
-      });
+
+      setTerms((previousTerms) =>
+        previousTerms.filter((t) => t._id !== term._id)
+      );
     }
   };
 
