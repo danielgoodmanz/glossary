@@ -10,6 +10,9 @@ const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
         method: 'DELETE',
       });
       const json = await response.json();
+      setTerms((previousTerms) => {
+        return [...previousTerms, terms];
+      });
     }
   };
 

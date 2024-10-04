@@ -27,7 +27,7 @@ const Home = () => {
       }
     };
     fetchTerms();
-  }, []);
+  }, [currentId]);
 
   //watch changes in search state update
   useEffect(() => {
@@ -53,15 +53,15 @@ const Home = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            placeholder="begin your search"
+            type='text'
+            placeholder='begin your search'
             value={search}
             onChange={handleChange}
           />
           {/* <button>go</button> */}
         </form>
       </div>
-      <div className="card-area">
+      <div className='card-area'>
         {search
           ? filteredTerms.map((term) => {
               return (
@@ -73,6 +73,8 @@ const Home = () => {
                   difficulty={term.difficulty}
                   currentId={currentId}
                   setCurrentId={setCurrentId}
+                  setTerms={setTerms}
+                  terms={terms}
                 />
               );
             })
@@ -87,13 +89,15 @@ const Home = () => {
                   difficulty={term.difficulty}
                   currentId={currentId}
                   setCurrentId={setCurrentId}
+                  setTerms={setTerms}
+                  terms={terms}
                 />
               );
             })}
       </div>
       <hr />
       <hr />
-      <div className="editarea"></div>
+      <div className='editarea'></div>
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}
@@ -103,7 +107,6 @@ const Home = () => {
           terms={terms}
         />
       ) : null}
-      <Outlet />
     </div>
   );
 };
