@@ -54,15 +54,15 @@ const Home = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <input
-            type='text'
-            placeholder='begin your search'
+            type="text"
+            placeholder="begin your search"
             value={search}
             onChange={handleChange}
           />
           {/* <button>go</button> */}
         </form>
       </div>
-      <div className='card-area'>
+      <div id="card-area">
         {search
           ? filteredTerms.map((term) => {
               return (
@@ -98,7 +98,7 @@ const Home = () => {
       </div>
       <hr />
       <hr />
-      <div className='editarea'></div>
+      <div id="editarea"></div>
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}

@@ -24,7 +24,7 @@ const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   };
 
   return (
-    <div>
+    <div className="text-red-500 ">
       <h2>{term.title}</h2>
       <p>{term.definition}</p>
       <p>{term.difficulty}</p>
