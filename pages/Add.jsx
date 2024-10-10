@@ -71,7 +71,11 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
       <Navbar />
       <form action='/add' method='post' onSubmit={handleSubmit}>
         <section>
-          {currentId ? <h1>editing '{term.title}'</h1> : <h1>Add a term!</h1>}
+          {currentId ? (
+            <h1 className='font-bold text-4xl'>editing '{term.title}'</h1>
+          ) : (
+            <h1 className='font-bold text-4xl'>Add a term!</h1>
+          )}
           <p>
             <label htmlFor='name'></label>
             <input
@@ -107,7 +111,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
             />
           </p>
         </section>
-        <section>
+        <section className='flex gap-2'>
           <button>Finish</button>
           <button onClick={() => setCurrentId(null)}>Cancel</button>
         </section>

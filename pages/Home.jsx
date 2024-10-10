@@ -48,21 +48,20 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className='border border-emerald-500'>
       <Header />
       {/* searchbar */}
-      <div>
+      <div id='search'>
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
-            placeholder="begin your search"
+            type='text'
+            placeholder='begin your search'
             value={search}
             onChange={handleChange}
           />
-          {/* <button>go</button> */}
         </form>
       </div>
-      <div id="card-area">
+      <div id='card-area'>
         {search
           ? filteredTerms.map((term) => {
               return (
@@ -96,9 +95,8 @@ const Home = () => {
               );
             })}
       </div>
-      <hr />
-      <hr />
-      <div id="editarea"></div>
+
+      <div id='editarea'></div>
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}

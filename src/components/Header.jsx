@@ -1,5 +1,5 @@
 const Header = () => {
-  return <h2 className="font-body">Header, glossary title sample</h2>;
+  return <h2 className='text-4xl'>Glossary Header</h2>;
 };
 
 export default Header;

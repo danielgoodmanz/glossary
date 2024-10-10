@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   //delete handler
   const handleDelete = async () => {
@@ -24,7 +22,7 @@ const Card = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   };
 
   return (
-    <div className="text-red-500 ">
+    <div>
       <h2>{term.title}</h2>
       <p>{term.definition}</p>
       <p>{term.difficulty}</p>
