@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <div className='font-bold bg-zinc-800 text-red-400 min-h-screen'>
+    <div className='font-bold bg-white text-red-400 min-h-screen'>
       <Navbar />
       <Home />
       <footer className='flex justify-between text-xs'>

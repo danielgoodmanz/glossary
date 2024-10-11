@@ -48,7 +48,7 @@ const Home = () => {
   };
 
   return (
-    <div className='border border-emerald-500'>
+    <div className='border'>
       <Header />
       {/* searchbar */}
       <div id='search'>
