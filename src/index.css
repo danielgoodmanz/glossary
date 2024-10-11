@@ -2,30 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-  html {
-  for setting base styles at the root HTML
-  }
-} */
-
-/* remove these before we add tailwind & shadcn ui */
-
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-
-  background-color: rgb(40, 40, 40);
-  color: white;
-} */
-
 @layer base {
   :root {
     --background: 0 0% 100%;
