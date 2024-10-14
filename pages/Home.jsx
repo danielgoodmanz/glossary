@@ -1,6 +1,17 @@
-import Header from '../src/components/Header';
-import Card from '../src/components/Card';
+import Header from '../src/my_components/Header';
+import MyCard from '../src/my_components/MyCard';
 import Add from './Add';
+
+//shadcn imports
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/Card';
+import { Button } from '@/components/ui/button';
 
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
@@ -10,7 +21,7 @@ const Home = () => {
   const [terms, setTerms] = useState([]);
   const [filteredTerms, setFilteredTerms] = useState([]);
   const [search, setSearch] = useState('');
-  // used to track which card was clicked for editing
+  // used to track which MyCard was clicked for editing
   const [currentId, setCurrentId] = useState(null);
 
   const params = useParams();
@@ -48,7 +59,7 @@ const Home = () => {
   };
 
   return (
-    <div className='border'>
+    <main className='border'>
       <Header />
       {/* searchbar */}
       <div id='search'>
@@ -61,11 +72,11 @@ const Home = () => {
           />
         </form>
       </div>
-      <div id='card-area'>
+      <div id='MyCard-area'>
         {search
           ? filteredTerms.map((term) => {
               return (
-                <Card
+                <MyCard
                   key={term._id}
                   term={term}
                   title={term.title}
@@ -81,7 +92,7 @@ const Home = () => {
           : terms &&
             terms.map((term) => {
               return (
-                <Card
+                <MyCard
                   key={term._id}
                   term={term}
                   title={term.title}
@@ -106,7 +117,7 @@ const Home = () => {
           terms={terms}
         />
       ) : null}
-    </div>
+    </main>
   );
 };
 

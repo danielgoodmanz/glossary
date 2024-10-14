@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../src/components/Navbar';
+import Navbar from '../src/my_components/Navbar';
 
 const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
   const [title, setTitle] = useState('');
@@ -68,7 +68,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
 
   return (
     <div>
-      <Navbar />
+      {currentId ? null : <Navbar />}
       <form action='/add' method='post' onSubmit={handleSubmit}>
         <section>
           {currentId ? (
