@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/Card';
 import { Button } from '@/components/ui/button';
 
-const MyCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
+const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   //delete handler
   const handleDelete = async () => {
     //soft validation
@@ -39,22 +39,20 @@ const MyCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
           <CardTitle>{term.title}</CardTitle>
           <CardDescription></CardDescription>
         </CardHeader>
-        <CardContent>{term.definition}</CardContent>
-        <CardFooter>{term.difficulty}</CardFooter>
-        <Button variant='destructive' onClick={handleDelete}>
-          delete
-        </Button>
-        <span> // </span>
-        <Button onClick={handleEdit}>edit</Button>
+        <CardContent className='space-y-4'>
+          <p>{term.definition}</p>
+          <p>{term.difficulty}</p>
+        </CardContent>
+        <CardFooter className='space-x-4'>
+          <Button variant='destructive' onClick={handleDelete}>
+            delete
+          </Button>
+          <span> // </span>
+          <Button onClick={handleEdit}>edit</Button>
+        </CardFooter>
       </Card>
-      {/* <h2>{term.title}</h2>
-        <p>{term.definition}</p>
-        <p>{term.difficulty}</p>
-        <button onClick={handleDelete}>delete</button>
-        <span> // </span>
-        <button onClick={handleEdit}>edit</button> */}
     </div>
   );
 };
 
-export default MyCard;
+export default TermCard;

@@ -1,22 +1,19 @@
 //pages
 import Home from '../pages/Home';
 import Navbar from './my_components/Navbar';
+import Header from './my_components/Header';
 
 function App() {
   return (
     <div>
-      <div className='font-bold text-red-400 min-h-screen'>
+      <div className='font-bold min-h-screen'>
         <Navbar />
+        <Header />
         <Home />
-      </div>
-      <footer className='flex justify-between text-xs'>
-        <p>by Dan</p>
-        <p>glossary v1</p>
-      </footer>
-
-      <div>
-        {/* sample card but lets keep simple & build up, perhaps a button that opens
-        the card in a new route /:id perhaps a modal on the same page even */}
+        <footer className='flex justify-between text-xs'>
+          <p>by Dan</p>
+          <p>glossary v1</p>
+        </footer>
       </div>
     </div>
   );

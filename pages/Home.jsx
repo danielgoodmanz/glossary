@@ -1,17 +1,6 @@
 import Header from '../src/my_components/Header';
-import MyCard from '../src/my_components/MyCard';
+import TermCard from '../src/my_components/TermCard';
 import Add from './Add';
-
-//shadcn imports
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/Card';
-import { Button } from '@/components/ui/button';
 
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
@@ -21,7 +10,7 @@ const Home = () => {
   const [terms, setTerms] = useState([]);
   const [filteredTerms, setFilteredTerms] = useState([]);
   const [search, setSearch] = useState('');
-  // used to track which MyCard was clicked for editing
+  // used to track which TermCard was clicked for editing
   const [currentId, setCurrentId] = useState(null);
 
   const params = useParams();
@@ -59,8 +48,7 @@ const Home = () => {
   };
 
   return (
-    <main className='border'>
-      <Header />
+    <main>
       {/* searchbar */}
       <div id='search'>
         <form onSubmit={handleSubmit}>
@@ -72,11 +60,11 @@ const Home = () => {
           />
         </form>
       </div>
-      <div id='MyCard-area'>
+      <div id='cardarea' className='flex justify-center gap-4'>
         {search
           ? filteredTerms.map((term) => {
               return (
-                <MyCard
+                <TermCard
                   key={term._id}
                   term={term}
                   title={term.title}
@@ -92,7 +80,7 @@ const Home = () => {
           : terms &&
             terms.map((term) => {
               return (
-                <MyCard
+                <TermCard
                   key={term._id}
                   term={term}
                   title={term.title}
@@ -106,7 +94,6 @@ const Home = () => {
               );
             })}
       </div>
-
       <div id='editarea'></div>
       {currentId ? (
         <Add
