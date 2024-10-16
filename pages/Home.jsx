@@ -60,7 +60,7 @@ const Home = () => {
           />
         </form>
       </div>
-      <div id='cardarea' className='flex justify-center gap-4'>
+      <div id='cardarea' className='grid grid-cols-4'>
         {search
           ? filteredTerms.map((term) => {
               return (

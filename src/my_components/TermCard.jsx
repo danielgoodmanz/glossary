@@ -33,8 +33,8 @@ const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   };
 
   return (
-    <div>
-      <Card>
+    <div className='flex justify-center'>
+      <Card className='flex flex-col justify-between max-w-min'>
         <CardHeader>
           <CardTitle>{term.title}</CardTitle>
           <CardDescription></CardDescription>

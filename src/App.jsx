@@ -12,7 +12,7 @@ function App() {
         <Home />
         <footer className='flex justify-between text-xs'>
           <p>by Dan</p>
-          <p>glossary v1</p>
+          <p>glossary.dev v1</p>
         </footer>
       </div>
     </div>
