@@ -22,7 +22,9 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
     "tailwind-merge": "^2.5.3",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tsx-to-jsx": "^0.0.4",
+    "tsx-to-jsx-cli": "^0.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
