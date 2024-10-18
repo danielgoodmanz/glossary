@@ -1,9 +1,11 @@
-import Header from '../src/my_components/Header';
 import TermCard from '../src/my_components/TermCard';
 import Add from './Add';
 
 import { useState, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
+
+//shadcn imports
+import { Input } from '@/components/ui/input';
 
 const Home = () => {
   // state
@@ -50,17 +52,16 @@ const Home = () => {
   return (
     <main>
       {/* searchbar */}
-      <div id='search'>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            placeholder='begin your search'
-            value={search}
-            onChange={handleChange}
-          />
-        </form>
+      <div id='search' className='flex justify-center my-6'>
+        <Input
+          type='text'
+          placeholder='begin your search'
+          className='italic w-1/4 text-center text-base'
+          value={search}
+          onChange={handleChange}
+        ></Input>
       </div>
-      <div id='cardarea' className='grid grid-cols-4'>
+      <div id='cardarea' className='flex justify-center gap-4 flex-wrap'>
         {search
           ? filteredTerms.map((term) => {
               return (

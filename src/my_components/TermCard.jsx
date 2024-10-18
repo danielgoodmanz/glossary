@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/Card';
 import { Button } from '@/components/ui/button';
+import { Trash2, WandSparkles } from 'lucide-react';
 
 const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   //delete handler
@@ -45,10 +46,12 @@ const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
         </CardContent>
         <CardFooter className='space-x-4'>
           <Button variant='destructive' onClick={handleDelete}>
-            delete
+            <Trash2 size={20}></Trash2>
           </Button>
           <span> // </span>
-          <Button onClick={handleEdit}>edit</Button>
+          <Button onClick={handleEdit}>
+            <WandSparkles size={20}></WandSparkles>
+          </Button>
         </CardFooter>
       </Card>
     </div>
