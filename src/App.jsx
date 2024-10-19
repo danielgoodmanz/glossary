@@ -6,17 +6,19 @@ import { ThemeProvider } from '@/components/theme-provider';
 
 function App() {
   return (
-    <div className='flex flex-col justify-center font-bold min-h-screen'>
-      <div>
-        <Navbar />
-        <Header />
-        <Home />
+    <ThemeProvider>
+      <div className='flex flex-col justify-center font-bold min-h-screen'>
+        <div>
+          <Navbar />
+          <Header />
+          <Home />
+        </div>
+        <footer className='flex justify-between text-xs mt-auto'>
+          <p>by Dan</p>
+          <p>glossary.dev v1</p>
+        </footer>
       </div>
-      <footer className='flex justify-between text-xs mt-auto'>
-        <p>by Dan</p>
-        <p>glossary.dev v1</p>
-      </footer>
-    </div>
+    </ThemeProvider>
   );
 }
 
