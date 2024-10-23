@@ -6,6 +6,8 @@ import { Outlet, useParams } from 'react-router-dom';
 
 //shadcn imports
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
 
 const Home = () => {
   // state
@@ -42,9 +44,6 @@ const Home = () => {
   }, [search]);
 
   //handlers
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
   const handleChange = (e) => {
     setSearch(e.target.value);
   };

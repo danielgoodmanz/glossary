@@ -2,7 +2,10 @@
 import Home from '../pages/Home';
 import Navbar from './my_components/Navbar';
 import Header from './my_components/Header';
+
+//shadcn imports
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 
 function App() {
   return (
@@ -13,6 +16,7 @@ function App() {
           <Header />
           <Home />
         </div>
+        <Toaster />
         <footer className='flex justify-between text-xs mt-auto'>
           <p>by Dan</p>
           <p>glossary.dev v1</p>

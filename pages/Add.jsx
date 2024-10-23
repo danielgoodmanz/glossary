@@ -7,12 +7,15 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ThemeProvider } from '@/components/theme-provider';
+import { useToast } from '@/hooks/use-toast';
 
 const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
   const [title, setTitle] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [definition, setDefinition] = useState('');
 
+  //hooks
+  const { toast } = useToast();
   const navigate = useNavigate();
 
   function updateTitle(e) {
@@ -46,6 +49,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
       setTitle('');
       setDifficulty('');
       console.log('new term added', json);
+      toast({ description: 'new term added succesfully!', variant: 'success' });
     } else {
       // OUR PUT REQUEST
       e.preventDefault();
@@ -69,6 +73,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
       });
 
       setCurrentId('');
+      toast({ description: 'term edited succesfully' });
     }
   };
 

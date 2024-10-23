@@ -10,7 +10,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { Trash2, WandSparkles } from 'lucide-react';
 
+//hooks
+import { useToast } from '@/hooks/use-toast';
+
 const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
+  const { toast } = useToast();
+
   //delete handler
   const handleDelete = async () => {
     //soft validation
@@ -24,6 +29,10 @@ const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
       setTerms((previousTerms) =>
         previousTerms.filter((t) => t._id !== term._id)
       );
+      toast({
+        description: 'term deleted succesfully!',
+        variant: 'destructive',
+      });
     }
   };
 
