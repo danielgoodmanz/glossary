@@ -94,7 +94,6 @@ const Home = () => {
               );
             })}
       </div>
-      <div id='editarea'></div>
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}

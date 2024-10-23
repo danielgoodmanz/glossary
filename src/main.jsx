@@ -13,11 +13,21 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
+    //show single term
+    children: [
+      {
+        path: '/terms/:name',
+      },
+    ],
   },
   {
     path: '/add',
     element: <Add />,
   },
+  // {
+  //   path: '*',
+  //   element: <ErrorPage />,
+  // },
 ]);
 
 createRoot(document.getElementById('root')).render(
