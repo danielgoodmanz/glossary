@@ -103,6 +103,7 @@ const Home = () => {
           terms={terms}
         />
       ) : null}
+      <Outlet />
     </main>
   );
 };

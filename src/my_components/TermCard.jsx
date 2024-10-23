@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 //shadcn imports
 import {
   Card,
@@ -45,10 +47,12 @@ const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
   return (
     <div className='flex justify-center'>
       <Card className='flex flex-col justify-between max-w-min'>
-        <CardHeader>
-          <CardTitle>{term.title}</CardTitle>
-          <CardDescription></CardDescription>
-        </CardHeader>
+        <Link to={`/terms/${term.title}`}>
+          <CardHeader>
+            <CardTitle>{term.title}</CardTitle>
+            <CardDescription></CardDescription>
+          </CardHeader>
+        </Link>
         <CardContent className='space-y-4'>
           <p>{term.definition}</p>
           <p>{term.difficulty}</p>
