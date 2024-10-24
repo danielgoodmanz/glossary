@@ -81,9 +81,9 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
     <ThemeProvider>
       <div className='font-bold'>
         {currentId ? null : <Navbar />}
-        <div className='flex justify-center text-center my-4'>
+        <div className='flex justify-center text-center'>
           <form action='/add' method='post' onSubmit={handleSubmit}>
-            <main>
+            <main className='space-y-2'>
               {currentId ? (
                 <h1 className='text-4xl'>editing '{term.title}'</h1>
               ) : (

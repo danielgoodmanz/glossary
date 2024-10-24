@@ -7,27 +7,29 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import Add from '../pages/Add.jsx';
 import ErrorPage from '../pages/Error-page.jsx';
+import TermCard from './my_components/TermCard.jsx';
+import Header from './my_components/Header.jsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
-    //show single term
     children: [
       {
-        path: '/terms/:name',
+        path: '/terms/:termName',
+        element: <Header />,
       },
     ],
   },
+  // {
+  //   path: '/terms/:termName',
+  //   element: <App />,
+  // },
   {
     path: '/add',
     element: <Add />,
   },
-  // {
-  //   path: '*',
-  //   element: <ErrorPage />,
-  // },
 ]);
 
 createRoot(document.getElementById('root')).render(
