@@ -8,6 +8,14 @@ import { Outlet, useParams } from 'react-router-dom';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 const Home = () => {
   // state
@@ -104,6 +112,18 @@ const Home = () => {
         />
       ) : null}
       <Outlet />
+      <Dialog defaultOpen>
+        <DialogTrigger>Open</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 };

@@ -18,14 +18,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/terms/:termName',
-        element: <Header />,
+        element: <App />,
       },
     ],
   },
-  // {
-  //   path: '/terms/:termName',
-  //   element: <App />,
-  // },
   {
     path: '/add',
     element: <Add />,
