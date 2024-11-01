@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import React from 'react';
+
 //shadcn imports
 import {
   Card,
@@ -9,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card';
+
 import { Button } from '@/components/ui/button';
 import { Trash2, WandSparkles } from 'lucide-react';
 
@@ -44,12 +47,17 @@ const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
     // future implementation could make the input fields editable
   };
 
+  //dialog handler
+  const handleSelect = () => {
+    setOpen(open ? true : false);
+  };
+
   return (
     <div className='flex justify-center'>
       <Card className='flex flex-col justify-between max-w-min'>
-        <Link to={`/terms/${term.title}`}>
+        <Link to={`/${term.title}`}>
           <CardHeader>
-            <CardTitle>{term.title}</CardTitle>
+            <CardTitle onClick={handleSelect}>{term.title}</CardTitle>
             <CardDescription></CardDescription>
           </CardHeader>
         </Link>

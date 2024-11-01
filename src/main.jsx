@@ -7,8 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import Add from '../pages/Add.jsx';
 import ErrorPage from '../pages/Error-page.jsx';
-import TermCard from './my_components/TermCard.jsx';
-import Header from './my_components/Header.jsx';
+import Container from './my_components/Container.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,11 +16,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/terms/:termName',
-        element: <App />,
+        path: '/:termName',
+        element: <Container />,
       },
     ],
   },
+  ,
   {
     path: '/add',
     element: <Add />,
