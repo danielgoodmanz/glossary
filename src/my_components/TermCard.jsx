@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import React from 'react';
 
@@ -47,10 +47,8 @@ const TermCard = ({ term, terms, setTerms, currentId, setCurrentId }) => {
     // future implementation could make the input fields editable
   };
 
-  //dialog handler
-  const handleSelect = () => {
-    setOpen(open ? true : false);
-  };
+  //select handler
+  const handleSelect = () => {};
 
   return (
     <div className='flex justify-center'>

@@ -1,13 +1,12 @@
 import TermCard from '../src/my_components/TermCard';
 import Add from './Add';
+import SingleCard from '@/src/my_components/SingleCard';
 
 import { useState, useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 //shadcn imports
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
 
 const Home = () => {
   // state
@@ -16,8 +15,6 @@ const Home = () => {
   const [search, setSearch] = useState('');
   // used to track which TermCard was clicked for editing
   const [currentId, setCurrentId] = useState(null);
-
-  const { termName } = useParams();
 
   //useEffect to fetch from db when Home mounts
   useEffect(() => {
@@ -28,7 +25,6 @@ const Home = () => {
       if (response.ok) {
         setTerms(json);
         //state hasn't rendered yet here so you'd be logging stale state if log(terms)
-        console.log(json);
       }
     };
     fetchTerms();
@@ -48,6 +44,10 @@ const Home = () => {
     setSearch(e.target.value);
   };
 
+  //react router URL parameters used to retrieve singular matched term
+  const { termName } = useParams();
+  const singleTerm = terms.find((t) => t.title === termName);
+
   return (
     <main>
       {/* searchbar */}
@@ -61,38 +61,45 @@ const Home = () => {
         ></Input>
       </div>
       <div id='cardarea' className='flex justify-center gap-4 flex-wrap'>
-        {search
-          ? filteredTerms.map((term) => {
-              return (
-                <TermCard
-                  key={term._id}
-                  term={term}
-                  title={term.title}
-                  definiton={term.definiton}
-                  difficulty={term.difficulty}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                  setTerms={setTerms}
-                  terms={terms}
-                />
-              );
-            })
-          : terms &&
-            terms.map((term) => {
-              return (
-                <TermCard
-                  key={term._id}
-                  term={term}
-                  title={term.title}
-                  definiton={term.definiton}
-                  difficulty={term.difficulty}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                  setTerms={setTerms}
-                  terms={terms}
-                />
-              );
-            })}
+        {/* went with a 'views' approach where we have
+            a check for single term existing, if so, render that TermCard
+            if no parameter then render all OR search query*/}
+        {termName ? (
+          // Single-term view: Render only the `singleTerm` if found
+          singleTerm ? (
+            <TermCard
+              key={singleTerm._id}
+              term={singleTerm}
+              title={singleTerm.title}
+              definiton={singleTerm.definiton}
+              difficulty={singleTerm.difficulty}
+              currentId={currentId}
+              setCurrentId={setCurrentId}
+              setTerms={setTerms}
+              terms={terms}
+            />
+          ) : (
+            // Fallback message if term not found
+            <p className='text-center'>
+              sorry! this term is not in our database
+            </p>
+          )
+        ) : (
+          // Default view: Render all terms or filtered terms based on search
+          (search ? filteredTerms : terms).map((term) => (
+            <TermCard
+              key={term._id}
+              term={term}
+              title={term.title}
+              definiton={term.definiton}
+              difficulty={term.difficulty}
+              currentId={currentId}
+              setCurrentId={setCurrentId}
+              setTerms={setTerms}
+              terms={terms}
+            />
+          ))
+        )}
       </div>
       {currentId ? (
         <Add
@@ -103,7 +110,8 @@ const Home = () => {
           terms={terms}
         />
       ) : null}
-      {termName ? <Outlet /> : null}
+      {/* abandoning use of Outlet, not good for stateful components (unless using Context API)
+      <Outlet /> */}
     </main>
   );
 };
