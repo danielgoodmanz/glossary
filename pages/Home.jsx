@@ -1,12 +1,10 @@
 import TermCard from '../src/my_components/TermCard';
 import Add from './Add';
-import SingleCard from '@/src/my_components/SingleCard';
+import CardContainer from '@/src/my_components/CardContainer';
+import SearchBar from '@/src/my_components/SearchBar';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
-//shadcn imports
-import { Input } from '@/components/ui/input';
 
 const Home = () => {
   // state
@@ -39,7 +37,7 @@ const Home = () => {
     );
   }, [search]);
 
-  //handlers
+  //handlers for searchbar
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -51,19 +49,11 @@ const Home = () => {
   return (
     <main>
       {/* searchbar */}
-      <div id='search' className='flex justify-center my-6'>
-        <Input
-          type='text'
-          placeholder='begin your search'
-          className='italic w-1/4 text-center text-base'
-          value={search}
-          onChange={handleChange}
-        ></Input>
-      </div>
-      <div id='cardarea' className='flex justify-center gap-4 flex-wrap'>
+      <SearchBar search={search} onChange={handleChange} />
+      <CardContainer>
         {/* went with a 'views' approach where we have
-            a check for single term existing, if so, render that TermCard
-            if no parameter then render all OR search query*/}
+              a check for single term existing, if so, render that TermCard
+              if no parameter then render all OR search query*/}
         {termName ? (
           // Single-term view: Render only the `singleTerm` if found
           singleTerm ? (
@@ -100,7 +90,7 @@ const Home = () => {
             />
           ))
         )}
-      </div>
+      </CardContainer>
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}
