@@ -1,3 +1,4 @@
+import Term from '@/backend/models/glossaryModel';
 import TermCard from '../src/my_components/TermCard';
 import Add from './Add';
 import CardContainer from '@/src/my_components/CardContainer';
@@ -37,7 +38,7 @@ const Home = () => {
     );
   }, [search]);
 
-  //handlers for searchbar
+  //handler for searchbar
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
@@ -46,51 +47,68 @@ const Home = () => {
   const { termName } = useParams();
   const singleTerm = terms.find((t) => t.title === termName);
 
+  //refactoring to early return for readability, instead of triple ternary
+  //here we check if a singleTerm was retrieved from terms.find() - if so, return that TermCard
+  if (singleTerm) {
+    return (
+      <main>
+        <SearchBar search={search} onChange={handleChange} />
+        <CardContainer>
+          <TermCard
+            key={singleTerm._id}
+            term={singleTerm}
+            title={singleTerm.title}
+            definiton={singleTerm.definiton}
+            difficulty={singleTerm.difficulty}
+            currentId={currentId}
+            setCurrentId={setCurrentId}
+            setTerms={setTerms}
+            terms={terms}
+          />
+        </CardContainer>
+        {/* render the edit card */}
+        {currentId ? (
+          <Add
+            term={terms.find((t) => t._id === currentId)}
+            currentId={currentId}
+            setCurrentId={setCurrentId}
+            setTerms={setTerms}
+            terms={terms}
+          />
+        ) : null}
+      </main>
+    );
+  }
+  // here, if no singleTerm is found, yet we have a URL parameter. lets user know term doesn't exist
+  if (termName && !singleTerm) {
+    return (
+      <p className='text-center'>
+        Sorry, this term doesn't exist in our database.
+      </p>
+    );
+  }
+  //the full term list or filteredTerms (based on client side search) will be returned as TermCards
+  //should there not be any parameters at all in the URL
+  const displayedTerms = search ? filteredTerms : terms;
   return (
     <main>
-      {/* searchbar */}
       <SearchBar search={search} onChange={handleChange} />
       <CardContainer>
-        {/* went with a 'views' approach where we have
-              a check for single term existing, if so, render that TermCard
-              if no parameter then render all OR search query*/}
-        {termName ? (
-          // Single-term view: Render only the `singleTerm` if found
-          singleTerm ? (
-            <TermCard
-              key={singleTerm._id}
-              term={singleTerm}
-              title={singleTerm.title}
-              definiton={singleTerm.definiton}
-              difficulty={singleTerm.difficulty}
-              currentId={currentId}
-              setCurrentId={setCurrentId}
-              setTerms={setTerms}
-              terms={terms}
-            />
-          ) : (
-            // Fallback message if term not found
-            <p className='text-center'>
-              sorry! this term is not in our database
-            </p>
-          )
-        ) : (
-          // Default view: Render all terms or filtered terms based on search
-          (search ? filteredTerms : terms).map((term) => (
-            <TermCard
-              key={term._id}
-              term={term}
-              title={term.title}
-              definiton={term.definiton}
-              difficulty={term.difficulty}
-              currentId={currentId}
-              setCurrentId={setCurrentId}
-              setTerms={setTerms}
-              terms={terms}
-            />
-          ))
-        )}
+        {displayedTerms.map((term) => (
+          <TermCard
+            key={term._id}
+            term={term}
+            title={term.title}
+            definiton={term.definiton}
+            difficulty={term.difficulty}
+            currentId={currentId}
+            setCurrentId={setCurrentId}
+            setTerms={setTerms}
+            terms={terms}
+          />
+        ))}
       </CardContainer>
+      {/* render the edit card */}
       {currentId ? (
         <Add
           term={terms.find((t) => t._id === currentId)}
@@ -100,8 +118,6 @@ const Home = () => {
           terms={terms}
         />
       ) : null}
-      {/* abandoning use of Outlet, not good for stateful components (unless using Context API)
-      <Outlet /> */}
     </main>
   );
 };
