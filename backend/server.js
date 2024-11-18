@@ -3,9 +3,6 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import Term from '../backend/models/glossaryModel.js';
-// import dns from 'node:dns';
-
-// dns.setDefaultResultOrder('ipv4first');
 
 dotenv.config();
 
@@ -48,9 +45,14 @@ app.get('/findone', async (req, res) => {
 });
 
 app.post('/add', async (req, res) => {
-  const { title, definition, difficulty } = req.body;
-  const term = await Term.create({ title, definition, difficulty });
-  res.status(200).json(term);
+  try {
+    const { title, definition, difficulty } = req.body;
+    const term = await Term.create({ title, definition, difficulty });
+    res.status(200).json(term);
+  } catch (error) {
+    console.log(error);
+    res.json(error)
+  }
 });
 
 app.put('/edit/:id', async (req, res) => {
