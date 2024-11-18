@@ -121,7 +121,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
                 className='resize-none'
               ></Textarea>
             </main>
-            <section className='flex justify-around'>
+            <section className='flex justify-around mt-2'>
               <Button>Finish</Button>
               <Button variant='secondary' onClick={() => setCurrentId(null)}>
                 Cancel

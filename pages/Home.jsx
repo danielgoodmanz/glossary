@@ -1,4 +1,3 @@
-import Term from '@/backend/models/glossaryModel';
 import TermCard from '../src/my_components/TermCard';
 import Add from './Add';
 import CardContainer from '@/src/my_components/CardContainer';
