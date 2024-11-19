@@ -50,8 +50,7 @@ app.post('/add', async (req, res) => {
     const term = await Term.create({ title, definition, difficulty });
     res.status(200).json(term);
   } catch (error) {
-    console.log(error);
-    res.json(error)
+    res.status(400).json({ error: error.message });
   }
 });
 

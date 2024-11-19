@@ -14,6 +14,7 @@ const glossarySchema = new mongoose.Schema(
     difficulty: {
       type: Number,
       required: false,
+      cast: 'rating must be a number',
     },
   },
   { timestamps: true }

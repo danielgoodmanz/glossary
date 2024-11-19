@@ -13,6 +13,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
   const [title, setTitle] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [definition, setDefinition] = useState('');
+  const [error, setError] = useState('');
 
   //hooks
   const { toast } = useToast();
@@ -29,8 +30,8 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
   }
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!currentId) {
-      e.preventDefault();
       // this is the body of the request below sent to the post route
       const term = { title, definition, difficulty };
 
@@ -43,17 +44,29 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
           'content-type': 'application/json',
         },
       });
-      navigate('/');
+
       const json = await response.json();
-      setDefinition('');
-      setTitle('');
-      setDifficulty('');
-      console.log('new term added', json);
-      toast({ description: 'new term added succesfully!', variant: 'success' });
+
+      console.log(json);
+
+      if (!response.ok) {
+        setError(json.error);
+        console.log(json.error);
+        return;
+      }
+
+      if (response.ok) {
+        navigate('/');
+        toast({
+          description: 'new term added succesfully!',
+          variant: 'success',
+        });
+        setDefinition('');
+        setTitle('');
+        setDifficulty('');
+      }
     } else {
       // OUR PUT REQUEST
-      e.preventDefault();
-
       const updatedTerm = { title, definition, difficulty };
 
       const response = await fetch('http://localhost:3000/edit/' + currentId, {
@@ -79,7 +92,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
 
   return (
     <ThemeProvider>
-      <div className='font-bold'>
+      <div className='font-bold text-center'>
         {currentId ? null : <Navbar />}
         <div className='flex justify-center text-center'>
           <form action='/add' method='post' onSubmit={handleSubmit}>
@@ -95,7 +108,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
                 name='title'
                 placeholder='term title'
                 required
-                autofocus='true'
+                autoFocus
                 onChange={updateTitle}
                 value={title}
               ></Input>
@@ -117,7 +130,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
                 placeholder="what's it mean?"
                 onChange={updateDefiniton}
                 value={definition}
-                spellcheck
+                spellCheck
                 className='resize-none'
               ></Textarea>
             </main>
@@ -129,6 +142,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
             </section>
           </form>
         </div>
+        {error && <p className='mt-2 italic text-xl'>{error}</p>}
       </div>
     </ThemeProvider>
   );
