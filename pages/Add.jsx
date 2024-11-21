@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/hooks/use-toast';
 
 const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
@@ -51,7 +52,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
 
       if (!response.ok) {
         setError(json.error);
-        console.log(json.error);
+        toast({ description: error, variant: 'destructive' });
         return;
       }
 
@@ -142,7 +143,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
             </section>
           </form>
         </div>
-        {error && <p className='mt-2 italic text-xl'>{error}</p>}
+        <Toaster />
       </div>
     </ThemeProvider>
   );
