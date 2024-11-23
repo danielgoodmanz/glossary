@@ -52,7 +52,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
 
       if (!response.ok) {
         setError(json.error);
-        toast({ description: error, variant: 'destructive' });
+        toast({ description: json.error, variant: 'destructive' });
         return;
       }
 
@@ -143,6 +143,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
             </section>
           </form>
         </div>
+        <p className='mt-4'>{error}</p>
         <Toaster />
       </div>
     </ThemeProvider>
