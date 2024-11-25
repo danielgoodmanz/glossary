@@ -10,7 +10,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/hooks/use-toast';
 
-const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
+const Add = ({ term, currentId, setCurrentId, setTerms }) => {
   const [title, setTitle] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [definition, setDefinition] = useState('');
@@ -19,7 +19,7 @@ const Add = ({ term, currentId, setCurrentId, terms, setTerms }) => {
   //hooks
   const { toast } = useToast();
   const navigate = useNavigate();
-
+  //handlers
   function updateTitle(e) {
     setTitle(e.target.value);
   }

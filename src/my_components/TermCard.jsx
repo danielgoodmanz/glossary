@@ -23,13 +23,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Trash2, WandSparkles } from 'lucide-react';
 
-const TermCard = ({ term, handleDelete, setCurrentId }) => {
-  //edit handler
-  const handleEdit = (_id) => {
-    // future implementation could make the input fields editable
-    setCurrentId(term._id);
-  };
-
+const TermCard = ({ term, handleDelete, handleEdit }) => {
   return (
     <div className='flex justify-center'>
       <Card className='flex flex-col justify-between max-w-min'>
@@ -71,7 +65,7 @@ const TermCard = ({ term, handleDelete, setCurrentId }) => {
           </Dialog>
 
           <span> // </span>
-          <Button onClick={handleEdit}>
+          <Button onClick={() => handleEdit(term)}>
             <WandSparkles size={20}></WandSparkles>
           </Button>
         </CardFooter>

@@ -46,6 +46,8 @@ const Home = () => {
 
   //HANDLERS
 
+  //add & edit handlers for form submission
+
   //delete handler
   const handleDelete = async (term) => {
     const response = await fetch('http://localhost:3000/delete/' + term._id, {
@@ -59,6 +61,12 @@ const Home = () => {
       description: 'term deleted succesfully!',
       variant: 'destructive',
     });
+  };
+
+  //edit handler
+  const handleEdit = (term) => {
+    // future implementation could make the input fields editable
+    setCurrentId(term._id);
   };
 
   //handler for searchbar
@@ -89,6 +97,7 @@ const Home = () => {
             currentId={currentId}
             setCurrentId={setCurrentId}
             handleDelete={handleDelete}
+            handleEdit={handleEdit}
           />
         </CardContainer>
         {/* render the edit card */}
@@ -97,6 +106,7 @@ const Home = () => {
             term={terms.find((t) => t._id === currentId)}
             currentId={currentId}
             setCurrentId={setCurrentId}
+            setTerms={setTerms}
           />
         ) : null}
       </main>
@@ -127,6 +137,7 @@ const Home = () => {
             currentId={currentId}
             setCurrentId={setCurrentId}
             handleDelete={handleDelete}
+            handleEdit={handleEdit}
           />
         ))}
       </CardContainer>
@@ -136,6 +147,7 @@ const Home = () => {
           term={terms.find((t) => t._id === currentId)}
           currentId={currentId}
           setCurrentId={setCurrentId}
+          setTerms={setTerms}
         />
       ) : null}
     </main>
