@@ -31,6 +31,4 @@ createRoot(document.getElementById('root')).render(
 );
 
 // TODO:
-// app structure
-// refactor/optimize state variables
 // folder structure for app ?

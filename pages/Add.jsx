@@ -19,7 +19,7 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
   //hooks
   const { toast } = useToast();
   const navigate = useNavigate();
-  //handlers
+
   function updateTitle(e) {
     setTitle(e.target.value);
   }
@@ -32,31 +32,24 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!currentId) {
-      // this is the body of the request below sent to the post route
-      const term = { title, definition, difficulty };
 
-      //you have to set your method, body & headers for a fetch API post request
-      const response = await fetch('http://localhost:3000/add', {
-        method: 'POST',
-        //you must make the term (JS object) a JSON string
-        body: JSON.stringify(term),
-        headers: {
-          'content-type': 'application/json',
-        },
+    try {
+      //deconstructing the term inputs
+      const submission = { title, definition, difficulty };
+
+      // the fetch
+      const endpoint = `http://localhost:3000/${currentId ? `edit/${currentId}` : `add`}`;
+      const method = currentId ? 'PUT' : 'POST';
+
+      const response = await fetch(endpoint, {
+        method: method,
+        body: JSON.stringify(submission),
+        headers: { 'content-type': 'application/json' },
       });
 
       const json = await response.json();
 
-      console.log(json);
-
-      if (!response.ok) {
-        setError(json.error);
-        toast({ description: json.error, variant: 'destructive' });
-        return;
-      }
-
-      if (response.ok) {
+      if (response.ok && !currentId) {
         navigate('/');
         toast({
           description: 'new term added succesfully!',
@@ -65,29 +58,24 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
         setDefinition('');
         setTitle('');
         setDifficulty('');
+      } else if (response.ok && currentId) {
+        setTerms((previousTerms) => {
+          return previousTerms.map((term) =>
+            term.id === currentId ? submission : term
+          );
+        });
+
+        setCurrentId('');
+        toast({ description: 'term edited succesfully' });
       }
-    } else {
-      // OUR PUT REQUEST
-      const updatedTerm = { title, definition, difficulty };
 
-      const response = await fetch('http://localhost:3000/edit/' + currentId, {
-        method: 'PUT',
-        body: JSON.stringify(updatedTerm),
-        headers: {
-          'content-type': 'application/json',
-        },
-      });
-
-      const json = await response.json();
-
-      setTerms((previousTerms) => {
-        return previousTerms.map((term) =>
-          term.id === currentId ? updatedTerm : term
-        );
-      });
-
-      setCurrentId('');
-      toast({ description: 'term edited succesfully' });
+      if (!response.ok) {
+        setError(json.error);
+        toast({ description: json.error, variant: 'destructive' });
+      }
+    } catch (error) {
+      setError(error);
+      console.log(error);
     }
   };
 
@@ -137,13 +125,17 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
             </main>
             <section className='flex justify-around mt-2'>
               <Button>Finish</Button>
-              <Button variant='secondary' onClick={() => setCurrentId(null)}>
+              <Button
+                variant='secondary'
+                onClick={
+                  currentId ? () => setCurrentId(null) : () => navigate('/')
+                }
+              >
                 Cancel
               </Button>
             </section>
           </form>
         </div>
-        <p className='mt-4'>{error}</p>
         <Toaster />
       </div>
     </ThemeProvider>

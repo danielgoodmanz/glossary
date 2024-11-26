@@ -46,7 +46,9 @@ const Home = () => {
 
   //HANDLERS
 
-  //add & edit handlers for form submission
+  //add & edit handlers for form submission are in the Add.jsx form component
+  //as it needs its own local state to operate, cannot drill to it as it's rendered
+  //as a solo-component in its own route
 
   //delete handler
   const handleDelete = async (term) => {

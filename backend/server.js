@@ -56,16 +56,19 @@ app.post('/add', async (req, res) => {
 
 app.put('/edit/:id', async (req, res) => {
   //get id of request
-  const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-  const term = await Term.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
-    }
-  );
-
-  res.status(200).json(term);
+    const term = await Term.findOneAndUpdate(
+      { _id: id },
+      {
+        ...req.body,
+      }
+    );
+    res.status(200).json(term);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 app.delete('/delete/:id', async (req, res) => {
