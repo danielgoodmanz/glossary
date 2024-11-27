@@ -27,22 +27,29 @@ const TermCard = ({ term, handleDelete, handleEdit }) => {
   return (
     <div className='flex justify-center'>
       <Card className='flex flex-col justify-between max-w-min'>
-        <Link to={`/${term.title}`}>
+        <Link to>
           <CardHeader>
-            <CardTitle>{term.title}</CardTitle>
+            <CardTitle>130 NE 169th Terr</CardTitle>
             <CardDescription></CardDescription>
           </CardHeader>
         </Link>
         <CardContent className='space-y-4'>
-          <p>{term.definition}</p>
-          <p>{term.difficulty}</p>
+          <p>3/2 single family + legal efficiency in North Miami Beach</p>
+          <p>
+            Description: Investor opportunity! Features impact windows/doors,
+            brand-new roof, etc..!
+          </p>
+          <p>Photos link: OR SMALL PHOTO HERE</p>
+          <p>ARV $380k</p>
+          <p>Price:$300k</p>
+          <p>Closing: December 31st, 2024</p>
+          <p>Escrow: $10k</p>
+          <p></p>
         </CardContent>
         <CardFooter className='space-x-4'>
           <Dialog>
             <DialogTrigger>
-              <Button variant='destructive'>
-                <Trash2 size={20}></Trash2>
-              </Button>
+              <Button variant='destructive'>Contact Saida/Jermaine here</Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -57,7 +64,7 @@ const TermCard = ({ term, handleDelete, handleEdit }) => {
                     onClick={() => handleDelete(term)}
                     className='max-w-min mt-2'
                   >
-                    YES
+                    C YES
                   </Button>
                 </DialogDescription>
               </DialogHeader>
@@ -65,9 +72,7 @@ const TermCard = ({ term, handleDelete, handleEdit }) => {
           </Dialog>
 
           <span> // </span>
-          <Button onClick={() => handleEdit(term)}>
-            <WandSparkles size={20}></WandSparkles>
-          </Button>
+          <Button onClick={() => handleEdit(term)}>Edit deal</Button>
         </CardFooter>
       </Card>
     </div>

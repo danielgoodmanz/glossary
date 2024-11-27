@@ -15,7 +15,7 @@ const Navbar = () => {
         <h1>home</h1>
       </Link>
       <Link to='/add'>
-        <h1>contribute</h1>
+        <h1>submit deal</h1>
       </Link>
       <Button
         onClick={() =>

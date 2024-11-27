@@ -19,7 +19,7 @@ function App() {
         <Toaster />
         <footer className='flex justify-between text-xs mt-auto'>
           <p>by Dan</p>
-          <p>glossary.dev v1</p>
+          <p>DispoMenu v1</p>
         </footer>
       </div>
     </ThemeProvider>

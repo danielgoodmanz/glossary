@@ -152,6 +152,10 @@ const Home = () => {
           setTerms={setTerms}
         />
       ) : null}
+      <CardContainer>
+        <TermCard />
+        <TermCard />
+      </CardContainer>
     </main>
   );
 };
