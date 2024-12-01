@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../components/my_components/Navbar';
+import Navbar from '../components/my-components/Navbar';
 
 //shadcn imports
 import { Input } from '@/components/ui/input';

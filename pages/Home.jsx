@@ -1,7 +1,7 @@
-import TermCard from '../components/my_components/TermCard';
+import TermCard from '../components/my-components/TermCard';
 import Add from './Add';
-import CardContainer from '@/components/my_components/CardContainer';
-import SearchBar from '@/components/my_components/SearchBar';
+import CardContainer from '@/components/my-components/CardContainer';
+import SearchBar from '@/components/my-components/SearchBar';
 
 //hooks
 import { useState, useEffect } from 'react';
