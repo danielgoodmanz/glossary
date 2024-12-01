@@ -1,7 +1,7 @@
 //pages
 import Home from '../pages/Home';
-import Navbar from './my_components/Navbar';
-import Header from './my_components/Header';
+import Navbar from '../components/my_components/Navbar';
+import Header from '../components/my_components/Header';
 
 //shadcn imports
 import { ThemeProvider } from '@/components/theme-provider';
