@@ -1,5 +1,5 @@
-import TermCard from '../components/my-components/TermCard';
-import Add from './Add';
+import TermCard from '@/components/my-components/TermCard';
+import Add from '@/pages/Add';
 import CardContainer from '@/components/my-components/CardContainer';
 import SearchBar from '@/components/my-components/SearchBar';
 
