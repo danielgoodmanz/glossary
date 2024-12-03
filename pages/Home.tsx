@@ -3,6 +3,13 @@ import Add from './Add';
 import CardContainer from '@/components/my-components/CardContainer';
 import SearchBar from '@/components/my-components/SearchBar';
 
+//types
+export type Term = {
+  title: string;
+  definition: string;
+  difficulty: number;
+};
+
 //hooks
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,11 +17,11 @@ import { useToast } from '@/hooks/use-toast';
 
 const Home = () => {
   // state
-  const [terms, setTerms] = useState([]);
-  const [filteredTerms, setFilteredTerms] = useState([]);
-  const [search, setSearch] = useState('');
+  const [terms, setTerms] = useState<Term[]>([]);
+  const [filteredTerms, setFilteredTerms] = useState<Term[]>([]);
+  const [search, setSearch] = useState<string>('');
   // used to track which TermCard was clicked for editing
-  const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState<string>('');
 
   //useEffect to fetch from db when Home mounts
   useEffect(() => {
