@@ -40,12 +40,12 @@ const Add = ({ term, currentId, setCurrentId, setTerms }: AddProps) => {
     setDefinition(e.target.value);
   }
 
-  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       //deconstructing the term inputs
-      const submission = { title, definition, difficulty };
+      const submission: Term = { ...term, title, definition, difficulty };
 
       // the fetch
       const endpoint = `http://localhost:3000/${currentId ? `edit/${currentId}` : `add`}`;

@@ -8,7 +8,7 @@ export type Term = {
   _id: string;
   title: string;
   definition: string;
-  difficulty: number;
+  difficulty: string;
 };
 
 export type TermCardProps = {
