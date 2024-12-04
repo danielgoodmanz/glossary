@@ -15,6 +15,7 @@ export type TermCardProps = {
   term: Term;
   currentId: string;
   setCurrentId: React.Dispatch<React.SetStateAction<string>>;
+  setTerms: React.Dispatch<React.SetStateAction<Term[]>>;
   handleDelete: (term: Term) => Promise<void>;
   handleEdit: (term: Term) => void;
 };

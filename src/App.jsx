@@ -27,3 +27,7 @@ function App() {
 }
 
 export default App;
+
+//TODO:
+//re-install shadcnui with typescript
+//skeleton components

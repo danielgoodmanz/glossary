@@ -1,8 +1,14 @@
 import { useRouteError } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+type RouteError = {
+  statusText: string;
+  message: string;
+};
+
 export default function ErrorPage() {
-  const error = useRouteError();
+  //when typing a value returned by a hook, you may need to type assert ie. using the 'as' keyword
+  const error = useRouteError() as RouteError;
   console.error(error);
 
   return (

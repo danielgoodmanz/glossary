@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/my-components/Navbar';
 
@@ -10,7 +10,16 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { useToast } from '@/hooks/use-toast';
 
-const Add = ({ term, currentId, setCurrentId, setTerms }) => {
+//types
+import { Term } from '@/pages/Home';
+type AddProps = {
+  term: Term;
+  currentId: string;
+  setCurrentId: React.Dispatch<React.SetStateAction<string>>;
+  setTerms: React.Dispatch<React.SetStateAction<Term[]>>;
+};
+
+const Add = ({ term, currentId, setCurrentId, setTerms }: AddProps) => {
   const [title, setTitle] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [definition, setDefinition] = useState('');
@@ -20,17 +29,18 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
-  function updateTitle(e) {
+  //handlers
+  function updateTitle(e: React.ChangeEvent<HTMLInputElement>) {
     setTitle(e.target.value);
   }
-  function updateDifficulty(e) {
+  function updateDifficulty(e: React.ChangeEvent<HTMLInputElement>) {
     setDifficulty(e.target.value);
   }
-  function updateDefiniton(e) {
+  function updateDefiniton(e: React.ChangeEvent<HTMLInputElement>) {
     setDefinition(e.target.value);
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     try {
@@ -61,7 +71,7 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
       } else if (response.ok && currentId) {
         setTerms((previousTerms) => {
           return previousTerms.map((term) =>
-            term.id === currentId ? submission : term
+            term._id === currentId ? submission : term
           );
         });
 
@@ -73,7 +83,7 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
         setError(json.error);
         toast({ description: json.error, variant: 'destructive' });
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(error);
       console.log(error);
     }
@@ -128,7 +138,7 @@ const Add = ({ term, currentId, setCurrentId, setTerms }) => {
               <Button
                 variant='secondary'
                 onClick={
-                  currentId ? () => setCurrentId(null) : () => navigate('/')
+                  currentId ? () => setCurrentId('') : () => navigate('/')
                 }
               >
                 Cancel
