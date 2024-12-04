@@ -119,7 +119,7 @@ const Home = () => {
         {/* render the edit card */}
         {currentId ? (
           <Add
-            term={terms.find((t) => t._id === currentId)}
+            term={terms.find((t) => t._id === currentId)!}
             currentId={currentId}
             setCurrentId={setCurrentId}
             setTerms={setTerms}
@@ -157,7 +157,7 @@ const Home = () => {
       {/* render the edit card */}
       {currentId ? (
         <Add
-          term={terms.find((t) => t._id === currentId)}
+          term={terms.find((t) => t._id === currentId)!}
           currentId={currentId}
           setCurrentId={setCurrentId}
           setTerms={setTerms}
