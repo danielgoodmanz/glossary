@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import React from 'react';
+//types
+import { TermCardProps } from '@/pages/Home';
 
 //shadcn imports
 import {
@@ -23,19 +24,21 @@ import {
 import { Button } from '@/components/ui/button';
 import { Trash2, WandSparkles } from 'lucide-react';
 
-const TermCard = ({ term, handleDelete, handleEdit }) => {
+const TermCard = ({ term, handleDelete, handleEdit }: TermCardProps) => {
+  const { title, definition, difficulty } = term;
+
   return (
     <div className='flex justify-center'>
       <Card className='flex flex-col justify-between max-w-min'>
-        <Link to={`/${term.title}`}>
+        <Link to={`/${title}`}>
           <CardHeader>
-            <CardTitle>{term.title}</CardTitle>
+            <CardTitle>{title}</CardTitle>
             <CardDescription></CardDescription>
           </CardHeader>
         </Link>
         <CardContent className='space-y-4'>
-          <p>{term.definition}</p>
-          <p>{term.difficulty}</p>
+          <p>{definition}</p>
+          <p>{difficulty}</p>
         </CardContent>
         <CardFooter className='space-x-4'>
           <Dialog>

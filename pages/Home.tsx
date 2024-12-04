@@ -5,9 +5,18 @@ import SearchBar from '@/components/my-components/SearchBar';
 
 //types
 export type Term = {
+  _id: string;
   title: string;
   definition: string;
   difficulty: number;
+};
+
+export type TermCardProps = {
+  term: Term;
+  currentId: string;
+  setCurrentId: React.Dispatch<React.SetStateAction<string>>;
+  handleDelete: (term: Term) => Promise<void>;
+  handleEdit: (term: Term) => void;
 };
 
 //hooks
@@ -58,7 +67,7 @@ const Home = () => {
   //as a solo-component in its own route
 
   //delete handler
-  const handleDelete = async (term) => {
+  const handleDelete = async (term: Term) => {
     const response = await fetch('http://localhost:3000/delete/' + term._id, {
       method: 'DELETE',
     });
@@ -73,13 +82,13 @@ const Home = () => {
   };
 
   //edit handler
-  const handleEdit = (term) => {
+  const handleEdit = (term: Term) => {
     // future implementation could make the input fields editable
     setCurrentId(term._id);
   };
 
   //handler for searchbar
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
@@ -100,9 +109,6 @@ const Home = () => {
           <TermCard
             key={singleTerm._id}
             term={singleTerm}
-            title={singleTerm.title}
-            definiton={singleTerm.definiton}
-            difficulty={singleTerm.difficulty}
             currentId={currentId}
             setCurrentId={setCurrentId}
             handleDelete={handleDelete}
@@ -140,9 +146,6 @@ const Home = () => {
           <TermCard
             key={term._id}
             term={term}
-            title={term.title}
-            definiton={term.definiton}
-            difficulty={term.difficulty}
             currentId={currentId}
             setCurrentId={setCurrentId}
             handleDelete={handleDelete}
