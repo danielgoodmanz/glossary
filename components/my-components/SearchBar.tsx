@@ -1,7 +1,7 @@
 import React from 'react';
 
 //shadcn imports
-import { Input } from '@/components/ui/input';
+import { Input } from '../ui/input';
 
 //types
 type SearchProps = {

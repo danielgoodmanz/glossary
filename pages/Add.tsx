@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 
 //types
 import { Term } from '@/pages/Home';
+
 type AddProps = {
   term: Term;
   currentId: string;
