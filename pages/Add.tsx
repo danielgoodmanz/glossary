@@ -37,7 +37,7 @@ const Add = ({ term, currentId, setCurrentId, setTerms }: AddProps) => {
   function updateDifficulty(e: React.ChangeEvent<HTMLInputElement>) {
     setDifficulty(e.target.value);
   }
-  function updateDefiniton(e: React.ChangeEvent<HTMLInputElement>) {
+  function updateDefiniton(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setDefinition(e.target.value);
   }
 
