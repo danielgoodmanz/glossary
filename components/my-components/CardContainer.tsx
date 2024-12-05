@@ -1,6 +1,9 @@
-import React from 'react';
+//types
+type CardContainerProps = {
+  children: React.ReactNode;
+};
 
-const CardContainer = ({ children }) => {
+const CardContainer = ({ children }: CardContainerProps) => {
   return (
     <div id='cardarea' className='flex justify-center gap-4 flex-wrap'>
       {children}

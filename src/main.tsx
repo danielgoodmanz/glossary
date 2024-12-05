@@ -20,11 +20,12 @@ const router = createBrowserRouter([
   },
   {
     path: '/add',
+    //@ts-ignore
     element: <Add />,
   },
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>

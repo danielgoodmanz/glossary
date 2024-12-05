@@ -3,7 +3,13 @@ import React from 'react';
 //shadcn imports
 import { Input } from '@/components/ui/input';
 
-const SearchBar = ({ search, onChange }) => {
+//types
+type SearchProps = {
+  search: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const SearchBar = ({ search, onChange }: SearchProps) => {
   return (
     <div className='flex justify-center my-6'>
       <Input

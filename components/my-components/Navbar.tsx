@@ -1,5 +1,3 @@
-import React from 'react';
-
 //shadcn imports
 import { Button } from '@/components/ui/button';
 import { MoonStar } from 'lucide-react';
