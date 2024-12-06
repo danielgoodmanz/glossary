@@ -2,6 +2,7 @@ import TermCard from '@/components/my-components/TermCard';
 import Add from '@/pages/Add';
 import CardContainer from '@/components/my-components/CardContainer';
 import SearchBar from '@/components/my-components/SearchBar';
+import { Skeleton } from '@/components/ui/skeleton';
 
 //types
 export type Term = {
@@ -31,24 +32,27 @@ const Home = () => {
   const [search, setSearch] = useState<string>('');
   // used to track which TermCard was clicked for editing
   const [currentId, setCurrentId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  //useEffect to fetch from db when Home mounts
+  //useEffect to fetch from db when Home mounts, uses loading state to display Skeletons
   useEffect(() => {
-    try {
-      const fetchTerms = async () => {
+    const fetchTerms = async () => {
+      setIsLoading(true);
+      try {
         const response = await fetch('http://localhost:3000/terms');
         const json = await response.json();
-        //establish starting state
         if (response.ok) {
           setTerms(json);
         } else {
           console.error(response.status);
         }
-      };
-      fetchTerms();
-    } catch (error) {
-      console.log(error);
-    }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchTerms();
   }, [currentId]);
 
   //watch changes in search state update
@@ -142,16 +146,23 @@ const Home = () => {
     <main>
       <SearchBar search={search} onChange={handleChange} />
       <CardContainer>
-        {displayedTerms.map((term) => (
-          <TermCard
-            key={term._id}
-            term={term}
-            currentId={currentId}
-            setCurrentId={setCurrentId}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
-          />
-        ))}
+        <CardContainer>
+          {/* creates an array of 5 undefined values which can be mapped to Skeleton components */}
+          {isLoading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <Skeleton key={index} className='w-[150px] h-[300px]' />
+              ))
+            : displayedTerms.map((term) => (
+                <TermCard
+                  key={term._id}
+                  term={term}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                  handleDelete={handleDelete}
+                  handleEdit={handleEdit}
+                />
+              ))}
+        </CardContainer>
       </CardContainer>
       {/* render the edit card */}
       {currentId ? (

@@ -27,6 +27,3 @@ function App() {
 }
 
 export default App;
-
-//TODO:
-//skeleton components
