@@ -27,3 +27,8 @@ function App() {
 }
 
 export default App;
+
+//TODO:
+//fork & write a Context API implementation of state?
+//fork & use localstorage version of terms ?
+//i.e. my terms page, vs ALL terms (DB lookup)
